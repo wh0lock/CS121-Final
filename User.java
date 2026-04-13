@@ -41,8 +41,8 @@ abstract class User implements HasMenu, Serializable{
       } else {
           System.out.println("Incorrect PIN");
         } // end if
-    } else {
-        System.out.println("Incorrect Username");
+      } else {
+          System.out.println("Incorrect Username");
       } // end if
     return result;
   } // end login
