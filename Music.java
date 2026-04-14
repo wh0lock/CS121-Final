@@ -4,7 +4,6 @@ import java.io.*;
 public class Music implements HasMenu {
   Listener listener = new Listener();
   ListenerList listeners = new ListenerList();
-//  QuestionList questions = new QuestionList();
 
   public static void main(String[] args){
     new Music();
@@ -26,7 +25,7 @@ public class Music implements HasMenu {
     System.out.println("1) New listener");
     System.out.println("2) Login as existing listener");
     System.out.println();
-    System.out.print("Please enter 0 or 1: ");
+    System.out.print("Please enter 0-2: ");
     String response = input.nextLine();
     return response;
   } // end menu
@@ -39,6 +38,7 @@ public class Music implements HasMenu {
         keepGoing = false;
       } else if (response.equals("1")){
           this.addListener();
+          System.out.println("Account created successfully.");
         } else if (response.equals("2")){
             this.loginAsListener();
           } else {
@@ -67,6 +67,7 @@ public class Music implements HasMenu {
     for (Listener listener: listeners){
       if (listener.login(userNameIn, pinIn)){
         currentListener = listener;
+        System.out.println("Welcome!");
       } // end if
     } // end for
 
@@ -109,7 +110,5 @@ public class Music implements HasMenu {
   } // end saveListeners
 
 } // end Music
-
-//class QuestionList extends ArrayList<Question> {};
 
 class ListenerList extends ArrayList<Listener> {};
