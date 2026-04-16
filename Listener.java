@@ -26,7 +26,7 @@ public class Listener extends User implements Serializable {
     Scanner input = new Scanner(System.in);
     System.out.println("0) Quit");
     System.out.println("1) Take Personality Test");
-    System.out.println("2) View Previous Results");
+    System.out.println("2) View Results");
     System.out.println();
     System.out.print("Please enter 0-2: ");
     String response = input.nextLine();
@@ -35,98 +35,93 @@ public class Listener extends User implements Serializable {
 
   public void start(){
     boolean keepGoing = true;
-    int score = personalityTest();
-    String response = menu();
-
     while(keepGoing){
+      String response = menu();
       if (response.equals("0")){
         keepGoing = false;
       } else if (response.equals("1")){
-          personalityTest();
-        } else if (response.equals("2")){
-            //call previous results
-          } else {
-              System.out.println("Invalid entry. Logging out.");
-              keepGoing = false;
-            } // end if
+        personalityTest();
+      } else if (response.equals("2")){
+        String results = getResults();
+        System.out.println(results);
+      } else {
+        System.out.println("Invalid entry.");
+      } // end if
     } // end while
   } // end start
 
   public int personalityTest(){
     Scanner input = new Scanner(System.in);
     int score = 0;
-    boolean keepGoing = true;
     String response = menu();
-
     System.out.println("Personality Test");
+    System.out.println();  
+    System.out.print("Do you prefer red (A) or blue (B)? ");
+    String oneResponse = input.nextLine().toUpperCase();
+    if (oneResponse.equals("A")){
+      score += 2;
+    } else if (oneResponse.equals("B")){
+      score += 3;
+    } else {
+      System.out.println("Please answer with A or B.");
+    } // end if
 
-    while(keepGoing){
-      if (response.equals("1")){
-        System.out.print("Do you prefer red (A) or blue (B)? ");
-        String oneResponse = input.nextLine().toUpperCase();
-        if (oneResponse.equals("A")){
-          score += 2;
-        } else if (oneResponse.equals("B")){
-            score += 3;
-          } else {
-              System.out.println("Please answer with A or B.");
-              keepGoing = false;
-            } // end if
-
-        System.out.print("Do you like apples (A) or oranges (B)? ");
-        String twoResponse = input.nextLine().toUpperCase();
-        if (twoResponse.equals("A")){
-          score += 2;
-        } else if (twoResponse.equals("B")){
-            score += 3;
-          } else {
-              System.out.println("Please answer with A or B.");
-              keepGoing = false;
-            } // end if
+    System.out.print("Do you like apples (A) or oranges (B)? ");
+    String twoResponse = input.nextLine().toUpperCase();
+    if (twoResponse.equals("A")){
+      score += 2;
+    } else if (twoResponse.equals("B")){
+      score += 3;
+    } else {
+      System.out.println("Please answer with A or B.");
+    } // end if
     
-        System.out.print("Are you more technology (A) or creativity (B) oriented? ");
-        String threeResponse = input.nextLine().toUpperCase();
-        if (threeResponse.equals("A")){
-          score += 2;
-        } else if (threeResponse.equals("B")){
-            score += 3;
-          } else {
-              System.out.println("Please answer with A or B.");
-              keepGoing = false;
-            } // end if
+    System.out.print("Are you more technology (A) or creativity (B) oriented? ");
+    String threeResponse = input.nextLine().toUpperCase();
+    if (threeResponse.equals("A")){
+      score += 2;
+    } else if (threeResponse.equals("B")){
+      score += 3;
+    } else {
+      System.out.println("Please answer with A or B.");
+    } // end if
     
-        System.out.print("Do you wear silver (A) or gold (B)? ");
-        String fourResponse = input.nextLine().toUpperCase();
-        if (fourResponse.equals("A")){
-          score += 2;
-        } else if (fourResponse.equals("B")){
-            score += 3;
-          } else {
-              System.out.println("Please answer with A or B.");
-              keepGoing = false;
-            } // end if
+    System.out.print("Do you wear silver (A) or gold (B)? ");
+    String fourResponse = input.nextLine().toUpperCase();
+    if (fourResponse.equals("A")){
+      score += 2;
+    } else if (fourResponse.equals("B")){
+      score += 3;
+    } else {
+      System.out.println("Please answer with A or B.");
+    } // end if
 
-        System.out.print("Do you like cats (A) or dogs (B) more? ");
-        String fiveResponse = input.nextLine().toUpperCase();
-        if (fiveResponse.equals("A")){
-          score += 2;
-          System.out.println("Calculating results...");
-          System.out.println();
-          keepGoing = false;
-        } else if (fiveResponse.equals("B")){
-            score += 3;
-            System.out.println("Calculating results...");
-            System.out.println();
-            keepGoing = false;
-          } else {
-              System.out.println("Please answer with A or B.");
-              keepGoing = false;
-            } // end if
-        } else {
-            keepGoing = false;
-          } // end if
-    } // end while
+    System.out.print("Do you like cats (A) or dogs (B) more? ");
+    String fiveResponse = input.nextLine().toUpperCase();
+    if (fiveResponse.equals("A")){
+      score += 2;
+      System.out.println("Calculating results...");
+      System.out.println();
+    } else if (fiveResponse.equals("B")){
+      score += 3;
+      System.out.println("Calculating results...");
+      System.out.println();
+    } else {
+      System.out.println("Please answer with A or B.");
+    } // end if
     return score;
   } // end personalityTest
 
+  public String getResults(){
+    int score = personalityTest();
+    String results;
+    if ((score % 2) == 0) {
+      System.out.println();
+      results = ("By my calculations, you might really enjoy Coldplay.");
+    } else {
+      System.out.println();
+      results = ("By my calculations, you might really enjoy My Chemical Romance.");
+    } // end if
+    return results;
+  } // end getResults
 } // end Listener
