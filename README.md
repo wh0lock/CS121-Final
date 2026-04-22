@@ -22,6 +22,8 @@ _________________
 + Listener()
 + start(): void
 + menu(): String
++ personalityTest(): int
++ getResults(): String
 
 Menu (interface, implements User)
 -----------------
