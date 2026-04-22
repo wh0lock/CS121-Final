@@ -26,9 +26,8 @@ public class Listener extends User implements Serializable {
     Scanner input = new Scanner(System.in);
     System.out.println("0) Quit");
     System.out.println("1) Take Personality Test");
-    System.out.println("2) View Results");
     System.out.println();
-    System.out.print("Please enter 0-2: ");
+    System.out.print("Please enter 0 or 1: ");
     String response = input.nextLine();
     return response;
   } // end menu
@@ -40,10 +39,7 @@ public class Listener extends User implements Serializable {
       if (response.equals("0")){
         keepGoing = false;
       } else if (response.equals("1")){
-        personalityTest();
-      } else if (response.equals("2")){
-        String results = getResults();
-        System.out.println(results);
+        System.out.println(getResults());
       } else {
         System.out.println("Invalid entry.");
       } // end if
@@ -53,7 +49,7 @@ public class Listener extends User implements Serializable {
   public int personalityTest(){
     Scanner input = new Scanner(System.in);
     int score = 0;
-    String response = menu();
+
     System.out.println("Personality Test");
     System.out.println();  
     System.out.print("Do you prefer red (A) or blue (B)? ");
